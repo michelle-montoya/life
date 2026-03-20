@@ -1,0 +1,165 @@
+/* ══════════════════════════════════════════
+   elenco.css — Página Elenco
+   ══════════════════════════════════════════ */
+
+.page-hero {
+    padding: 10rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(37,99,192,0.25), transparent 70%);
+}
+
+.page-hero-content { position: relative; z-index: 1; }
+
+.page-series-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--white), var(--blue-pale));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.page-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+}
+
+/* ══ ACTOR GRID ══ */
+.actors-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem;
+}
+
+.actors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
+}
+
+.actor-card {
+    position: relative;
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.actor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 30px rgba(37,99,192,0.2);
+}
+
+.actor-card:hover .actor-overlay {
+    opacity: 1;
+}
+
+.actor-photo-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+}
+
+.actor-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: saturate(0.85);
+}
+
+.actor-card:hover .actor-photo {
+    transform: scale(1.08);
+    filter: saturate(1);
+}
+
+.actor-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, var(--blue-mid), var(--blue-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.actor-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(2,11,24,0.97) 0%, rgba(2,11,24,0.3) 50%, transparent 100%);
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.2rem;
+}
+
+.actor-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+}
+
+.actor-char {
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    font-style: italic;
+    font-family: var(--font-display);
+}
+
+.actor-dept {
+    font-size: 0.65rem;
+    color: var(--blue-light);
+    margin-top: 0.4rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.actor-num {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(2,11,24,0.8);
+    border: 1px solid rgba(201,169,110,0.4);
+    color: var(--gold);
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    backdrop-filter: blur(10px);
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 600px) {
+    .actors-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}

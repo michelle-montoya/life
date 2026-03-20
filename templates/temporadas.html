@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Temporadas — {{ serie.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/temporadas.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="page-hero-content">
+        <p class="page-series-name">{{ serie.name }}</p>
+        <h1 class="page-title">Temporadas</h1>
+        <div class="page-line"></div>
+    </div>
+</section>
+
+<div class="seasons-container">
+
+    <div class="seasons-summary" style="margin-bottom: 3rem;">
+        <div class="glass-card summary-stat">
+            <div class="summary-num">{{ serie.number_of_seasons or '—' }}</div>
+            <div class="summary-label">Temporadas</div>
+        </div>
+        <div class="glass-card summary-stat">
+            <div class="summary-num">{{ serie.number_of_episodes or '—' }}</div>
+            <div class="summary-label">Episodios</div>
+        </div>
+        <div class="glass-card summary-stat">
+            <div class="summary-num">{{ serie.first_air_date[:4] if serie.first_air_date else '—' }}</div>
+            <div class="summary-label">Año inicio</div>
+        </div>
+    </div>
+
+    {% if serie.seasons %}
+        {% for season in serie.seasons %}
+        <div class="glass-card season-item fade-in">
+            <div class="season-num-badge">{{ season.season_number }}</div>
+            <div class="season-poster">
+                {% if season.poster_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ season.poster_path }}"
+                    alt="{{ season.name }}" loading="lazy">
+                {% else %}
+                <div class="season-poster-placeholder">📺</div>
+                {% endif %}
+            </div>
+            <div class="season-info">
+                <div class="season-number">Temporada {{ season.season_number }}</div>
+                <div class="season-name">{{ season.name }}</div>
+
+                <div class="season-meta">
+                    {% if season.episode_count %}
+                    <div class="season-meta-item">
+                        <span class="season-meta-label">Episodios</span>
+                        <span class="season-meta-value">{{ season.episode_count }}</span>
+                    </div>
+                    {% endif %}
+                    {% if season.air_date %}
+                    <div class="season-meta-item">
+                        <span class="season-meta-label">Estreno</span>
+                        <span class="season-meta-value">{{ season.air_date[:4] }}</span>
+                    </div>
+                    {% endif %}
+                    {% if season.vote_average and season.vote_average > 0 %}
+                    <div class="season-meta-item">
+                        <span class="season-meta-label">Calificación</span>
+                        <span class="season-meta-value">⭐ {{ "%.1f"|format(season.vote_average) }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if season.overview %}
+                <p class="season-overview">{{ season.overview }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="glass-card" style="padding: 4rem; text-align: center; color: var(--white-dim);">
+        <p style="font-size: 3rem; margin-bottom: 1rem;">📺</p>
+        <p>No hay información de temporadas disponible</p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

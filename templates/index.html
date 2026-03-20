@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block title %}LIFE — {{ serie.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-backdrop">
+        {% if serie.backdrop_path %}
+        <img src="https://image.tmdb.org/t/p/original{{ serie.backdrop_path }}" alt="{{ serie.name }}">
+        {% endif %}
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-poster-wrap">
+            <div class="hero-poster-glow"></div>
+            {% if serie.poster_path %}
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}" class="hero-poster">
+            {% endif %}
+        </div>
+
+        <div class="hero-meta">
+            <div class="hero-badges">
+                <span class="badge badge-gold">★ Serie</span>
+                {% if serie.status %}
+                <span class="badge badge-blue">{{ serie.status }}</span>
+                {% endif %}
+                {% if serie.original_language %}
+                <span class="badge badge-blue">{{ serie.original_language | upper }}</span>
+                {% endif %}
+            </div>
+
+            <h1 class="hero-title">{{ serie.name }}</h1>
+            {% if serie.original_name and serie.original_name != serie.name %}
+            <span class="hero-title-ko">{{ serie.original_name }}</span>
+            {% endif %}
+
+            <p class="hero-overview">{{ serie.overview or 'Una serie que te atrapa desde el primer episodio.' }}</p>
+
+            <div class="hero-stats">
+                {% if serie.first_air_date %}
+                <div class="hero-stat">
+                    <span class="stat-label">Estreno</span>
+                    <span class="stat-value">{{ serie.first_air_date[:4] }}</span>
+                </div>
+                {% endif %}
+                {% if serie.number_of_seasons %}
+                <div class="hero-stat">
+                    <span class="stat-label">Temporadas</span>
+                    <span class="stat-value">{{ serie.number_of_seasons }}</span>
+                </div>
+                {% endif %}
+                {% if serie.number_of_episodes %}
+                <div class="hero-stat">
+                    <span class="stat-label">Episodios</span>
+                    <span class="stat-value">{{ serie.number_of_episodes }}</span>
+                </div>
+                {% endif %}
+                {% if serie.vote_average %}
+                <div class="hero-stat">
+                    <span class="stat-label">Calificación</span>
+                    <div class="rating-display">
+                        <div class="rating-circle" style="--pct: {{ (serie.vote_average * 10) | int }}">
+                            <span class="rating-number">{{ "%.1f"|format(serie.vote_average) }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="hero-actions">
+                <a href="/elenco" class="btn btn-primary">🎭 Ver Elenco</a>
+                <a href="/temporadas" class="btn btn-secondary">📺 Temporadas</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFO CARDS -->
+<section style="padding: 0 2rem;">
+    <div class="info-row">
+        <div class="glass-card info-card fade-in">
+            <div class="info-icon">🌐</div>
+            <div class="info-card-title">País de origen</div>
+            <div class="info-card-value">{{ serie.origin_country[0] if serie.origin_country else '—' }}</div>
+        </div>
+        <div class="glass-card info-card fade-in">
+            <div class="info-icon">⏱️</div>
+            <div class="info-card-title">Duración episodio</div>
+            <div class="info-card-value">
+                {% if serie.episode_run_time %}{{ serie.episode_run_time[0] }} min{% else %}—{% endif %}
+            </div>
+        </div>
+        <div class="glass-card info-card fade-in">
+            <div class="info-icon">💬</div>
+            <div class="info-card-title">Votos</div>
+            <div class="info-card-value">{{ "{:,}".format(serie.vote_count or 0) }}</div>
+            <div class="info-card-sub">valoraciones de usuarios</div>
+        </div>
+    </div>
+</section>
+
+<!-- GENRES -->
+{% if serie.genres %}
+<section class="genres-section">
+    <div class="section-header" style="margin-bottom: 2rem;">
+        <span class="section-label">Géneros</span>
+        <div class="section-line"></div>
+    </div>
+    <div class="genres-wrap">
+        {% for genre in serie.genres %}
+        <span class="genre-tag">{{ genre.name }}</span>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ELENCO PREVIEW -->
+{% if actores %}
+<section class="cast-section">
+    <div class="section-header">
+        <span class="section-label">Protagonistas</span>
+        <h2 class="section-title">Elenco Principal</h2>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="cast-grid">
+        {% for actor in actores[:6] %}
+        <div class="glass-card cast-card fade-in">
+            <div class="cast-photo-wrap">
+                {% if actor.profile_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ actor.profile_path }}"
+                    alt="{{ actor.name }}" class="cast-photo" loading="lazy">
+                {% else %}
+                <div class="cast-photo-placeholder">👤</div>
+                {% endif %}
+            </div>
+            <div style="padding: 0.8rem;">
+                <div class="cast-name">{{ actor.name }}</div>
+                <div class="cast-char">{{ actor.character }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/elenco" class="btn btn-secondary">Ver elenco completo →</a>
+    </div>
+</section>
+{% endif %}
+
+<!-- SIMILAR SHOWS -->
+{% if similares %}
+<section class="similar-section">
+    <div class="section-header">
+        <span class="section-label">También te puede gustar</span>
+        <h2 class="section-title">Series Similares</h2>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="similar-grid">
+        {% for s in similares[:6] %}
+        <div class="glass-card similar-card fade-in">
+            <div class="similar-poster-wrap">
+                {% if s.poster_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ s.poster_path }}"
+                    alt="{{ s.name }}" class="similar-poster" loading="lazy">
+                {% else %}
+                <div style="width:100%;height:100%;background:var(--blue-mid);display:flex;align-items:center;justify-content:center;font-size:2rem;">📺</div>
+                {% endif %}
+            </div>
+            <div class="similar-info">
+                <div class="similar-title">{{ s.name }}</div>
+                <div class="similar-year">{{ s.first_air_date[:4] if s.first_air_date else '' }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

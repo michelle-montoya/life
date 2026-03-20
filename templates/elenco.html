@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Elenco — {{ serie.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/elenco.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="page-hero-content">
+        <p class="page-series-name">{{ serie.name }}</p>
+        <h1 class="page-title">Elenco</h1>
+        <div class="page-line"></div>
+        <p style="color: var(--white-dim); font-size: 0.85rem;">{{ actores|length }} actores y actrices</p>
+    </div>
+</section>
+
+<div class="actors-container">
+    <div class="actors-grid">
+        {% for actor in actores %}
+        <div class="actor-card fade-in">
+            <div class="actor-num">{{ loop.index }}</div>
+            <div class="actor-photo-wrap">
+                {% if actor.profile_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ actor.profile_path }}"
+                alt="{{ actor.name }}" class="actor-photo" loading="lazy">
+                {% else %}
+                <div class="actor-placeholder">👤</div>
+                {% endif %}
+                <div class="actor-overlay">
+                    <div class="actor-name">{{ actor.name }}</div>
+                    <div class="actor-char">{{ actor.character }}</div>
+                    {% if actor.known_for_department %}
+                    <div class="actor-dept">{{ actor.known_for_department }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Galería — {{ serie.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/galeria.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="page-hero-content">
+        <p class="page-series-name">{{ serie.name }}</p>
+        <h1 class="page-title">Galería</h1>
+        <div class="page-line"></div>
+    </div>
+</section>
+
+<div class="gallery-container">
+    <div class="gallery-tabs">
+        <button class="tab-btn active" onclick="switchTab('backdrops', this)">Escenas</button>
+        <button class="tab-btn" onclick="switchTab('posters', this)">Pósters</button>
+    </div>
+
+    <!-- BACKDROPS -->
+    <div id="backdrops" class="backdrops-grid">
+        {% if imagenes %}
+            {% for img in imagenes %}
+            <div class="backdrop-item fade-in" onclick="openLightbox('https://image.tmdb.org/t/p/original{{ img.file_path }}')">
+                <img src="https://image.tmdb.org/t/p/w780{{ img.file_path }}"
+                    alt="Escena {{ loop.index }}" class="backdrop-img" loading="lazy">
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="glass-card" style="grid-column: span 3; padding: 4rem; text-align: center; color: var(--white-dim);">
+            <p style="font-size: 3rem; margin-bottom: 1rem;">🖼️</p>
+            <p>No hay imágenes disponibles</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- POSTERS -->
+    <div id="posters" class="posters-grid">
+        {% if posters %}
+            {% for img in posters %}
+            <div class="poster-item fade-in" onclick="openLightbox('https://image.tmdb.org/t/p/original{{ img.file_path }}')">
+                <img src="https://image.tmdb.org/t/p/w342{{ img.file_path }}"
+                    alt="Póster {{ loop.index }}" class="poster-img" loading="lazy">
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="glass-card" style="grid-column: span 3; padding: 4rem; text-align: center; color: var(--white-dim);">
+            <p style="font-size: 3rem; margin-bottom: 1rem;">🖼️</p>
+            <p>No hay pósters disponibles</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function switchTab(tab, btn) {
+    document.getElementById('backdrops').style.display = 'none';
+    document.getElementById('posters').style.display = 'none';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (tab === 'backdrops') {
+        document.getElementById('backdrops').style.display = 'grid';
+    } else {
+        document.getElementById('posters').style.display = 'grid';
+    }
+}
+
+function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+    if (!e || e.target !== document.querySelector('.lightbox-img')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+</script>
+{% endblock %}
