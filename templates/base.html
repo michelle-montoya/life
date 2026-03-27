@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     {% block extra_css %}{% endblock %}
+    <meta name="theme-color" content="#020b18">
 </head>
 <body>
     <div class="noise-overlay"></div>
@@ -71,5 +73,15 @@
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block extra_js %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('{{ url_for("static", filename="service-worker.js") }}')
+            .then(() => console.log("PWA activada 🔥"))
+            .catch(err => console.log("Error:", err));
+    }
+    </script>
 </body>
 </html>

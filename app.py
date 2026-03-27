@@ -10,6 +10,11 @@
 # Flask: micro-framework web para Python
 from flask import Flask, render_template, jsonify
 
+import os
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+
 # requests: librería para hacer peticiones HTTP a la API
 import requests
 
