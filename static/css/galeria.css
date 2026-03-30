@@ -236,13 +236,3 @@
     transform: scale(1.1);
 }
 
-/* ══ RESPONSIVE ══ */
-@media (max-width: 768px) {
-    .backdrops-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 140px;
-    }
-    .backdrop-item:nth-child(4n+1) { grid-column: span 1; grid-row: span 1; }
-    .backdrop-item:nth-child(7n+2) { grid-row: span 1; }
-    .posters-grid { grid-template-columns: repeat(2, 1fr); }
-}

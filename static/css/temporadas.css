@@ -204,9 +204,3 @@
     opacity: 0.8;
 }
 
-/* ══ RESPONSIVE ══ */
-@media (max-width: 600px) {
-    .season-item { grid-template-columns: 100px 1fr; gap: 1rem; }
-    .seasons-summary { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-    .summary-num { font-size: 2rem; }
-}

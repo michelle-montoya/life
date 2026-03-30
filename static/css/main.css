@@ -520,6 +520,109 @@ img { display: block; max-width: 100%; }
 a { color: inherit; }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-toggle { display: flex; }
+
+    /* NAV */
+    .nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    /* HERO */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-poster {
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* INFO */
+    .info-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* CAST / ACTORS */
+    .cast-grid,
+    .actors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* GALERÍA */
+    .backdrops-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-tabs {
+        flex-wrap: wrap;
+    }
+
+    /* TEMPORADAS */
+    .season-item {
+        grid-template-columns: 1fr;
+    }
+
+    .season-poster {
+        height: 220px;
+    }
+
+}
+
+
+@media (min-width: 768px) and (max-width: 992px) {
+
+  /* HERO */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* INFO */
+    .info-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* CAST / ACTORS */
+    .cast-grid,
+    .actors-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* GALERÍA */
+    .backdrops-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* TEMPORADAS */
+    .season-item {
+        grid-template-columns: 120px 1fr;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .nav-links {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
 }
