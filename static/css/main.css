@@ -519,6 +519,57 @@ img { display: block; max-width: 100%; }
 
 a { color: inherit; }
 
+/* 📱 Móviles pequeños */
+@media (max-width: 480px) {
+
+    /* HERO */
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-overview {
+        font-size: 0.9rem;
+    }
+
+    .hero-poster {
+        width: 130px;
+    }
+
+    /* INFO */
+    .info-row {
+        padding: 1.5rem 1rem;
+    }
+
+    /* CAST / ACTORS */
+    .cast-grid,
+    .actors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* GALERÍA */
+    .backdrops-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* TEMPORADAS */
+    .season-item {
+        padding: 0.5rem;
+    }
+
+    .season-name {
+        font-size: 1.3rem;
+    }
+
+    .season-overview {
+        font-size: 0.8rem;
+    }
+
+}
+
 @media (max-width: 768px) {
 
     /* ================= NAV ================= */
