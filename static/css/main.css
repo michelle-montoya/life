@@ -604,144 +604,92 @@ a { color: inherit; }
 
 @media (max-width: 768px) {
 
-    /* Evitar desborde horizontal en todo el sitio */
+    /* Evitar desborde horizontal total */
     html, body {
         overflow-x: hidden;
         width: 100%;
     }
 
-    /* ================= NAV ================= */
-    .nav-links {
-        display: none;
-    }
-
-    .nav-toggle {
-        display: flex;
-    }
-
-    /* ================= HERO ================= */
+    /* ================= HERO & STATS ================= */
     .hero-content {
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
+        display: flex !important; 
+        flex-direction: column !important;
+        align-items: center !important;
         text-align: center;
-        gap: 1.5rem;
-        width: 100%;
-        max-width: 100vw; /* Asegura que no sea más ancho que la pantalla */
+        width: 100% !important;
         padding: 1rem;
-        box-sizing: border-box;
     }
 
-    .hero-poster-wrap {
-        order: -1; /* Mantiene la imagen arriba */
-        width: 100%;
-    }
-
-    .hero-poster {
-        width: 140px; /* Ajustado para celulares */
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
-
+    /* Los cuadros de 2 Temporadas / 32 Episodios */
     .hero-stats {
-        display: flex;
-        flex-direction: column; /* Uno debajo del otro */
-        gap: 1rem;
-        width: 100%;
-        align-items: center;
+        display: flex !important;
+        flex-direction: column !important; /* Uno encima de otro */
+        gap: 1rem !important;
+        width: 100% !important;
+        align-items: center !important;
     }
 
     .hero-stats > div {
-        width: 90%; /* Que ocupen casi todo el ancho */
-        max-width: 300px;
+        width: 90% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
     }
 
-    .hero-overview {
-        max-width: 100%;
-        padding: 0 0.5rem;
-        font-size: 0.95rem;
-    }
-
-    .hero-actions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    /* ================= INFO ================= */
+    /* ================= INFO (País, Duración, Votos) ================= */
     .info-row {
-        display: flex;          /* Cambiamos a flex */
-        flex-direction: column; /* Las pone una debajo de otra */
-        align-items: center;    /* Las centra horizontalmente */
-        gap: 1.5rem;            /* Espacio entre cada tarjeta */
-        padding: 2rem 1rem;
-        width: 100%;            /* Ocupa todo el ancho */
-        box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column !important; /* Fuerza la lista vertical */
+        align-items: center !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
     }
 
-    /* Ajuste para las tarjetas individuales */
-    .info-card { /* Asegúrate de que este sea el nombre de la clase de tus cuadros */
-        width: 100%;
-        max-width: 320px;       /* Para que no se vean gigantes en pantallas anchas */
-        margin: 0 auto;
+    .info-card, .info-row > div {
+        width: 90% !important;
+        max-width: 320px !important;
+        display: block !important; /* Asegura que no se oculten */
     }
 
-    /* ================= CAST / ACTORS ================= */
-    .cast-grid,
-    .actors-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    /* ================= GALERÍA ================= */
-    .backdrops-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-        /* ================= TEMPORADAS ================= */
+    /* ================= TEMPORADAS (Lo que se cortaba) ================= */
     .season-item {
-        display: flex;
-        flex-direction: column; /* Imagen arriba, texto abajo */
-        align-items: center;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.05); /* Un fondo sutil para que se distinga */
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        overflow: hidden; /* Evita que el contenido se salga de los bordes redondeados */
-        width: 100%;
+        display: flex !important;
+        flex-direction: column !important; /* Imagen ARRIBA, Texto ABAJO */
+        align-items: center !important;
+        width: 100% !important;
+        height: auto !important; /* Deja que el cuadro crezca según el texto */
+        min-height: unset !important;
+        margin-bottom: 2rem !important;
     }
 
     .season-poster {
-        width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
-        max-width: 250px; /* Pero no dejamos que crezca infinito */
-        height: auto;
-        margin-top: 1rem;
+        width: 140px !important; /* Tamaño controlado para que no ocupe todo */
+        height: auto !important;
+        margin: 1rem 0 !important;
     }
 
     .season-info {
-        padding: 1.5rem;
-        width: 100%;
-        box-sizing: border-box;
+        width: 100% !important;
+        padding: 1rem !important;
+        text-align: center !important;
     }
 
     .season-name {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        white-space: normal; /* Permite que el nombre salte de línea si es largo */
+        display: block !important;
+        width: 100% !important;
+        white-space: normal !important; /* Permite que el texto use varios renglones */
+        font-size: 1.4rem !important;
+        overflow: visible !important;
+    }
+
+    /* Ajuste para el texto de episodios/año que sale cortado */
+    .season-overview, .season-meta {
+        display: block !important;
+        width: 100% !important;
+        font-size: 0.9rem !important;
     }
 
 }
+
 
 @media (min-width: 768px) and (max-width: 992px) {
 
