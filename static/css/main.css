@@ -521,7 +521,7 @@ a { color: inherit; }
 
 @media (max-width: 768px) {
 
-    /* NAV */
+    /* ================= NAV ================= */
     .nav-links {
         display: none;
     }
@@ -530,16 +530,27 @@ a { color: inherit; }
         display: flex;
     }
 
-    /* HERO */
+    /* ================= HERO ================= */
     .hero-content {
-        grid-template-columns: 1fr;
+        display: flex; /* 🔥 usamos solo flex (no grid) */
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         gap: 2rem;
     }
 
+    .hero-poster-wrap {
+        order: -1; /* imagen arriba */
+    }
+
     .hero-poster {
         width: 150px;
-        margin: 0 auto;
+        margin: 0 auto 1rem;
+    }
+
+    .hero-overview {
+        max-width: 100%;
+        padding: 0 1rem;
     }
 
     .hero-stats {
@@ -552,18 +563,19 @@ a { color: inherit; }
         align-items: center;
     }
 
-    /* INFO */
+    /* ================= INFO ================= */
     .info-row {
         grid-template-columns: 1fr;
+        padding: 2rem 1rem;
     }
 
-    /* CAST / ACTORS */
+    /* ================= CAST / ACTORS ================= */
     .cast-grid,
     .actors-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* GALERÍA */
+    /* ================= GALERÍA ================= */
     .backdrops-grid {
         grid-template-columns: 1fr;
     }
@@ -572,17 +584,22 @@ a { color: inherit; }
         flex-wrap: wrap;
     }
 
-    /* TEMPORADAS */
+    /* ================= TEMPORADAS ================= */
     .season-item {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
 
     .season-poster {
+        width: 100%;
         height: 220px;
     }
 
-}
+    .season-info {
+        padding: 1rem;
+    }
 
+}
 
 @media (min-width: 768px) and (max-width: 992px) {
 
@@ -614,6 +631,7 @@ a { color: inherit; }
     }
 
 }
+
 
 @media (min-width: 992px) {
 
