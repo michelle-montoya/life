@@ -552,21 +552,14 @@ a { color: inherit; }
         gap: 1rem; /* Espacio entre los círculos de calificación */
     }
 
-    /* INFO - Aquí es donde se cortaban las tarjetas azules */
+        /* INFO - Ajuste fino para cel pequeño */
     .info-row {
-        display: flex;
-        flex-direction: column; /* Una tarjeta debajo de otra */
-        align-items: center;
         padding: 1.5rem 0.5rem;
-        gap: 1rem;
-        width: 100%;
+        gap: 1rem; /* Menos espacio entre tarjetas en pantallas mini */
     }
 
-    /* Asegura que cada cuadro de info (País, Duración, Votos) no se desborde */
-    .info-row > div, .info-card { 
-        width: 95% !important;
-        max-width: 280px;
-        margin: 0 auto;
+    .info-row > div {
+        width: 95%; /* Un poco más anchas para aprovechar el poco espacio */
     }
 
     /* CAST / ACTORS - Una sola columna */
@@ -653,10 +646,15 @@ a { color: inherit; }
 
     .hero-stats {
         display: flex;
-        flex-direction: column; /* Apila episodios y calificación para ganar espacio */
-        align-items: center;
-        gap: 1.5rem;
+        flex-direction: column; /* Uno debajo del otro */
+        gap: 1rem;
         width: 100%;
+        align-items: center;
+    }
+
+    .hero-stats > div {
+        width: 90%; /* Que ocupen casi todo el ancho */
+        max-width: 300px;
     }
 
     .hero-overview {
@@ -673,21 +671,22 @@ a { color: inherit; }
         width: 100%;
     }
 
-    /* ================= INFO (Tarjetas de abajo) ================= */
+    /* ================= INFO ================= */
     .info-row {
-        display: flex; /* Cambiado de grid a flex para mejor control */
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
+        display: flex;          /* Cambiamos a flex */
+        flex-direction: column; /* Las pone una debajo de otra */
+        align-items: center;    /* Las centra horizontalmente */
+        gap: 1.5rem;            /* Espacio entre cada tarjeta */
         padding: 2rem 1rem;
-        width: 100%;
+        width: 100%;            /* Ocupa todo el ancho */
         box-sizing: border-box;
     }
 
-    /* Si usas tarjetas individuales dentro de info-row */
-    .info-row > div {
+    /* Ajuste para las tarjetas individuales */
+    .info-card { /* Asegúrate de que este sea el nombre de la clase de tus cuadros */
         width: 100%;
-        max-width: 320px; /* Controla que no se estiren demasiado */
+        max-width: 320px;       /* Para que no se vean gigantes en pantallas anchas */
+        margin: 0 auto;
     }
 
     /* ================= CAST / ACTORS ================= */
@@ -710,24 +709,38 @@ a { color: inherit; }
         justify-content: center;
     }
 
-    /* ================= TEMPORADAS ================= */
+        /* ================= TEMPORADAS ================= */
     .season-item {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* Imagen arriba, texto abajo */
         align-items: center;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05); /* Un fondo sutil para que se distinga */
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        overflow: hidden; /* Evita que el contenido se salga de los bordes redondeados */
         width: 100%;
     }
 
     .season-poster {
-        width: 100%;
-        max-width: 200px; /* Evita que la imagen sea gigante en móvil */
+        width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+        max-width: 250px; /* Pero no dejamos que crezca infinito */
         height: auto;
+        margin-top: 1rem;
     }
 
     .season-info {
-        padding: 1rem;
-        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
     }
+
+    .season-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        white-space: normal; /* Permite que el nombre salte de línea si es largo */
+    }
+
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
