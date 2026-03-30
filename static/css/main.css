@@ -522,55 +522,100 @@ a { color: inherit; }
 /* 📱 Móviles pequeños */
 @media (max-width: 480px) {
 
-    /* HERO */
+    /* HERO - Ajustes para que no se amontone */
     .hero-content {
-        padding: 0 1rem;
+        padding: 0 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem; /* Un poco más pequeño para evitar saltos de línea feos */
+        line-height: 1.2;
     }
 
     .hero-overview {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
+        text-align: center;
     }
 
     .hero-poster {
-        width: 130px;
+        width: 120px; /* Tamaño ideal para pantallas angostas */
+        height: auto;
     }
 
-    /* INFO */
+    .hero-stats {
+        gap: 1rem; /* Espacio entre los círculos de calificación */
+    }
+
+    /* INFO - Aquí es donde se cortaban las tarjetas azules */
     .info-row {
-        padding: 1.5rem 1rem;
+        display: flex;
+        flex-direction: column; /* Una tarjeta debajo de otra */
+        align-items: center;
+        padding: 1.5rem 0.5rem;
+        gap: 1rem;
+        width: 100%;
     }
 
-    /* CAST / ACTORS */
+    /* Asegura que cada cuadro de info (País, Duración, Votos) no se desborde */
+    .info-row > div, .info-card { 
+        width: 95% !important;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    /* CAST / ACTORS - Una sola columna */
     .cast-grid,
     .actors-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
     }
 
     /* GALERÍA */
     .backdrops-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     /* TEMPORADAS */
     .season-item {
-        padding: 0.5rem;
+        padding: 1rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .season-poster {
+        width: 110px;
+        margin-bottom: 1rem;
     }
 
     .season-name {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .season-overview {
         font-size: 0.8rem;
+        line-height: 1.4;
     }
 
 }
 
+
 @media (max-width: 768px) {
+
+    /* Evitar desborde horizontal en todo el sitio */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
 
     /* ================= NAV ================= */
     .nav-links {
@@ -583,73 +628,106 @@ a { color: inherit; }
 
     /* ================= HERO ================= */
     .hero-content {
-        display: flex; /* 🔥 usamos solo flex (no grid) */
+        display: flex; 
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 2rem;
+        gap: 1.5rem;
+        width: 100%;
+        max-width: 100vw; /* Asegura que no sea más ancho que la pantalla */
+        padding: 1rem;
+        box-sizing: border-box;
     }
 
     .hero-poster-wrap {
-        order: -1; /* imagen arriba */
+        order: -1; /* Mantiene la imagen arriba */
+        width: 100%;
     }
 
     .hero-poster {
-        width: 150px;
-        margin: 0 auto 1rem;
+        width: 140px; /* Ajustado para celulares */
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .hero-stats {
+        display: flex;
+        flex-direction: column; /* Apila episodios y calificación para ganar espacio */
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
     }
 
     .hero-overview {
         max-width: 100%;
-        padding: 0 1rem;
-    }
-
-    .hero-stats {
-        justify-content: center;
-        flex-wrap: wrap;
+        padding: 0 0.5rem;
+        font-size: 0.95rem;
     }
 
     .hero-actions {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+        width: 100%;
     }
 
-    /* ================= INFO ================= */
+    /* ================= INFO (Tarjetas de abajo) ================= */
     .info-row {
-        grid-template-columns: 1fr;
+        display: flex; /* Cambiado de grid a flex para mejor control */
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
         padding: 2rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Si usas tarjetas individuales dentro de info-row */
+    .info-row > div {
+        width: 100%;
+        max-width: 320px; /* Controla que no se estiren demasiado */
     }
 
     /* ================= CAST / ACTORS ================= */
     .cast-grid,
     .actors-grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     /* ================= GALERÍA ================= */
     .backdrops-grid {
+        display: grid;
         grid-template-columns: 1fr;
     }
 
     .gallery-tabs {
+        display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     /* ================= TEMPORADAS ================= */
     .season-item {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     .season-poster {
         width: 100%;
-        height: 220px;
+        max-width: 200px; /* Evita que la imagen sea gigante en móvil */
+        height: auto;
     }
 
     .season-info {
         padding: 1rem;
+        text-align: center;
     }
-
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
