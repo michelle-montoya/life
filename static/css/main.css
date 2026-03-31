@@ -707,6 +707,52 @@ a { color: inherit; }
         font-size: 0.9rem !important;
     }
 
+        /* ================= SOLUCIÓN DEFINITIVA CUADROS SUPERIORES ================= */
+    
+    /* Forzamos al contenedor padre a ser columna y no permitir filas */
+    div.season-summary, 
+    div.hero-stats {
+        display: flex !important;
+        flex-direction: column !important; 
+        flex-wrap: nowrap !important; /* Prohíbe que intenten ponerse de lado */
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 20px !important;
+        padding: 20px 0 !important;
+    }
+
+    /* Forzamos a cada cuadro (hijo directo) a ocupar su propia línea */
+    div.season-summary > div, 
+    div.hero-stats > div {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 85% !important; /* Ancho para que no toque los bordes del cel */
+        max-width: 300px !important;
+        min-width: 250px !important;
+        height: auto !important;
+        min-height: 110px !important;
+        margin: 0 auto !important; /* Centrado */
+        float: none !important; /* Elimina cualquier alineación lateral vieja */
+    }
+
+    /* Forzamos el texto de adentro para que no empuje el cuadro */
+    div.season-summary div h3, 
+    div.hero-stats div strong {
+        font-size: 2.2rem !important;
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    div.season-summary div span, 
+    div.hero-stats div p {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        white-space: normal !important;
+    }
+
 }
 
 
