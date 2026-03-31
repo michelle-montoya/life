@@ -620,43 +620,21 @@ a { color: inherit; }
         padding: 1rem;
     }
 
+    /* Los cuadros de 2 Temporadas / 32 Episodios */
     .hero-stats {
         display: flex !important;
-        flex-wrap: wrap !important; /* ESTO es el secreto: permite que el 3er cuadro baje */
-        justify-content: center !important;
-        gap: 15px !important;
+        flex-direction: column !important; /* Uno encima de otro */
+        gap: 1rem !important;
         width: 100% !important;
-        padding: 10px !important;
-    }
-
-    /* LOS CUADRITOS INDIVIDUALES */
-    .hero-stats > div, 
-    .stat-item { /* Usa el nombre de la clase que tengan tus cuadros */
-        flex: 1 1 140px !important; /* Intentan medir 140px, si no caben, bajan */
-        min-width: 130px !important;
-        max-width: 180px !important; /* Para que no se vean gigantes */
-        height: auto !important;
-        padding: 15px 10px !important;
-        text-align: center !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
         align-items: center !important;
     }
 
-    /* AJUSTE DE TEXTO INTERNO PARA QUE NO SE CORTE */
-    .hero-stats div span, 
-    .hero-stats div p {
-        font-size: 0.85rem !important; /* Un poco más pequeño para que quepa todo */
-        white-space: normal !important;
-        line-height: 1.2 !important;
+    .hero-stats > div {
+        width: 90% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
     }
 
-    .hero-stats div h3, 
-    .hero-stats div strong {
-        font-size: 1.5rem !important; /* El número grande */
-        margin-bottom: 5px !important;
-    }
     /* ================= INFO (País, Duración, Votos) ================= */
     .info-row {
         display: flex !important;
@@ -673,6 +651,42 @@ a { color: inherit; }
     }
 
     /* ================= TEMPORADAS (Lo que se cortaba) ================= */
+        /* ESTO ES PARA LOS 3 CUADRITOS DE ARRIBA (Temporadas, Episodios, Fecha) */
+    .season-summary,
+    .hero-stats {
+        display: flex !important;
+        flex-wrap: wrap !important; /* Permite que el 3ro baje si no cabe */
+        justify-content: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Cada cuadrito individual */
+    .season-summary > div,
+    .hero-stats > div {
+        flex: 1 1 140px !important; /* Base de 140px, crece si hay espacio */
+        max-width: 160px !important; /* Para que no se vean gigantes */
+        min-height: 110px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 15px !important;
+        padding: 10px !important;
+    }
+
+    /* Evitar que el texto de los cuadros se corte */
+    .season-summary div span,
+    .hero-stats div p {
+        font-size: 0.75rem !important;
+        white-space: normal !important;
+        text-align: center !important;
+        line-height: 1.2 !important;
+    }
+
     .season-item {
         display: flex !important;
         flex-direction: column !important; /* Imagen ARRIBA, Texto ABAJO */
@@ -711,6 +725,7 @@ a { color: inherit; }
     }
 
 }
+
 
 
 @media (min-width: 768px) and (max-width: 992px) {
