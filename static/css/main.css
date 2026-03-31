@@ -621,6 +621,64 @@ a { color: inherit; }
         display: block !important; /* Asegura que no se oculten */
     }
 
+        /* ================= GALERÍA (Móvil) ================= */
+    
+    /* Contenedor de las pestañas (Backdrops / Posters) */
+    .gallery-tabs {
+        display: flex !important;
+        flex-wrap: wrap !important; /* Si hay muchas pestañas, bajan a la siguiente fila */
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 2rem !important;
+        padding: 0 10px !important;
+    }
+
+    .gallery-tab {
+        padding: 8px 15px !important;
+        font-size: 0.9rem !important;
+        flex: 1 1 auto !important; /* Se ajustan al ancho disponible */
+        text-align: center !important;
+    }
+
+    /* La cuadrícula de imágenes */
+    .backdrops-grid, 
+    .posters-grid, 
+    .gallery-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Una imagen debajo de la otra */
+        gap: 1.5rem !important;
+        padding: 0 1rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Cada tarjeta de imagen en la galería */
+    .gallery-item, 
+    .backdrop-item {
+        width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    }
+
+    /* La imagen como tal */
+    .gallery-item img, 
+    .backdrop-item img, 
+    .backdrops-grid img {
+        width: 100% !important;
+        height: auto !important; /* Mantiene la proporción original */
+        display: block !important;
+        object-fit: cover !important; /* Para que llenen el espacio sin deformarse */
+    }
+
+
+    .backdrops-grid, .posters-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+
     /* ================= TEMPORADAS ================= */
 
     /* 1. LOS 3 CUADRITOS DE ARRIBA (Temporadas, Episodios, Año) */
