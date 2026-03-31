@@ -519,90 +519,61 @@ img { display: block; max-width: 100%; }
 
 a { color: inherit; }
 
-/* 📱 Móviles pequeños */
-@media (max-width: 480px) {
 
-    /* HERO - Ajustes para que no se amontone */
-    .hero-content {
-        padding: 0 0.5rem;
-        display: flex;
+@media (max-width: 768px) {
+
+    /* ================= NAV (Menú Móvil) ================= */
+    .nav-toggle {
+        display: flex !important; /* Muestra las 3 rayitas */
+        z-index: 1001; /* Por encima del menú desplegado */
+    }
+
+    /* Ocultamos los links normales del PC */
+    .nav-links {
+        display: none; 
+    }
+
+    /* Estilo para el menú móvil que controla tu JS */
+    #mobileMenu {
+        display: none; /* Oculto por defecto */
+        position: fixed; /* Se queda fijo al hacer scroll */
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(2, 11, 24, 0.98); /* Color oscuro de tu diseño */
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        width: 100%;
+        gap: 2rem;
+        z-index: 1000;
+        padding: 2rem;
         box-sizing: border-box;
     }
 
-    .hero-title {
-        font-size: 1.6rem; /* Un poco más pequeño para evitar saltos de línea feos */
-        line-height: 1.2;
+    /* Esta es la clase que activa tu JavaScript */
+    #mobileMenu.open {
+        display: flex !important;
     }
 
-    .hero-overview {
-        font-size: 0.85rem;
-        padding: 0 0.5rem;
-        text-align: center;
+    #mobileMenu li {
+        list-style: none;
+        transition: all 0.4s ease; /* Para la animación de tu JS */
     }
 
-    .hero-poster {
-        width: 120px; /* Tamaño ideal para pantallas angostas */
-        height: auto;
+    #mobileMenu a {
+        font-size: 1.8rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
     }
 
-    .hero-stats {
-        gap: 1rem; /* Espacio entre los círculos de calificación */
+    /* Para que el botón de cerrar o abrir no se mueva */
+    .nav-container {
+        position: relative;
+        z-index: 1002;
     }
 
-        /* INFO - Ajuste fino para cel pequeño */
-    .info-row {
-        padding: 1.5rem 0.5rem;
-        gap: 1rem; /* Menos espacio entre tarjetas en pantallas mini */
-    }
-
-    .info-row > div {
-        width: 95%; /* Un poco más anchas para aprovechar el poco espacio */
-    }
-
-    /* CAST / ACTORS - Una sola columna */
-    .cast-grid,
-    .actors-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-
-    /* GALERÍA */
-    .backdrops-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    /* TEMPORADAS */
-    .season-item {
-        padding: 1rem 0.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .season-poster {
-        width: 110px;
-        margin-bottom: 1rem;
-    }
-
-    .season-name {
-        font-size: 1.2rem;
-    }
-
-    .season-overview {
-        font-size: 0.8rem;
-        line-height: 1.4;
-    }
-
-}
-
-
-@media (max-width: 768px) {
 
     /* Evitar desborde horizontal total */
     html, body {
