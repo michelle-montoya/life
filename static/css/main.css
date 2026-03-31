@@ -621,34 +621,43 @@ a { color: inherit; }
         display: block !important; /* Asegura que no se oculten */
     }
 
- /* ================= GALERÍA (AJUSTE DE IMÁGENES) ================= */
+        /* ================= GALERÍA (SOLUCIÓN DEFINITIVA) ================= */
     
     .backdrops-grid {
-        display: grid !important;
-        grid-template-columns: 1fr !important; /* Una por fila para que se vean grandes */
+        display: flex !important;
+        flex-direction: column !important; /* Una imagen sobre otra */
         gap: 20px !important;
-        padding: 0 15px !important;
+        padding: 10px !important;
+        width: 100% !important;
     }
 
-    /* La tarjeta que envuelve la imagen */
-    .backdrop-item, .gallery-item {
+    .backdrop-item {
+        position: relative !important;
         width: 100% !important;
-        height: auto !important; /*  IMPORTANTE: Que la tarjeta crezca con la foto */
-        min-height: unset !important; /* Quita cualquier altura mínima */
-        background: rgba(255, 255, 255, 0.05) !important;
+        height: 200px !important; /* 🔥 FUERZA una altura fija para todas */
         border-radius: 12px !important;
         overflow: hidden !important;
-        display: flex !important;
-        flex-direction: column !important;
+        background: #020b18 !important; /* Color de fondo oscuro */
     }
 
-    /* La imagen como tal */
-    .backdrop-item img, .gallery-item img {
+    .backdrop-img {
         width: 100% !important;
-        height: 200px !important; /*  Ajusta esta altura a tu gusto */
-        object-fit: cover !important; /* ESTO hace que la foto llene el cuadro sin deformarse */
+        height: 100% !important; /* Obliga a la imagen a medir 200px de alto */
+        object-fit: cover !important; /* 🔥 ESTA ES LA CLAVE: llena el cuadro sin deformar */
         display: block !important;
     }
+
+    /* Arreglo del gradiente (::after) */
+    .backdrop-item::after {
+        content: '' !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: linear-gradient(to top, rgba(2, 11, 24, 0.7), transparent 60%) !important;
+        opacity: 1 !important; /* En móvil que se vea siempre para dar estilo */
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
     /* ================= TEMPORADAS ================= */
 
     /* 1. LOS 3 CUADRITOS DE ARRIBA (Temporadas, Episodios, Año) */
