@@ -551,7 +551,7 @@ a { color: inherit; }
         box-sizing: border-box;
     }
 
-    /* Esta es la clase que activa tu JavaScript */
+
     #mobileMenu.open {
         display: flex !important;
     }
@@ -623,39 +623,51 @@ a { color: inherit; }
 
     /* ================= TEMPORADAS (Lo que se cortaba) ================= */
         /* ESTO ES PARA LOS 3 CUADRITOS DE ARRIBA (Temporadas, Episodios, Fecha) */
+    /* CONTENEDOR DE LOS CUADRITOS */
     .season-summary,
     .hero-stats {
         display: flex !important;
-        flex-wrap: wrap !important; /* Permite que el 3ro baje si no cabe */
-        justify-content: center !important;
-        gap: 12px !important;
+        flex-direction: column !important; /* 🔥 FUERZA COLUMNA (uno encima de otro) */
+        align-items: center !important;
+        gap: 15px !important;
         width: 100% !important;
-        padding: 10px !important;
+        padding: 20px 10px !important;
         box-sizing: border-box !important;
     }
 
-    /* Cada cuadrito individual */
+    /* CADA CUADRITO INDIVIDUAL */
     .season-summary > div,
     .hero-stats > div {
-        flex: 1 1 140px !important; /* Base de 140px, crece si hay espacio */
-        max-width: 160px !important; /* Para que no se vean gigantes */
-        min-height: 110px !important;
+        width: 90% !important; /* Ocupa casi todo el ancho para que el texto respire */
+        max-width: 300px !important; /* Pero que no se vea gigante en tablets */
+        min-height: 100px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        background: rgba(255, 255, 255, 0.05) !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 15px !important;
-        padding: 10px !important;
+        padding: 15px !important;
+        margin: 0 auto !important; /* Centrado perfecto */
     }
 
-    /* Evitar que el texto de los cuadros se corte */
+    /* NÚMEROS Y TEXTOS */
+    .season-summary div h3,
+    .hero-stats div strong {
+        font-size: 2rem !important; /* El número grande */
+        color: #e2b659 !important;
+        margin: 0 !important;
+    }
+
     .season-summary div span,
     .hero-stats div p {
-        font-size: 0.75rem !important;
+        font-size: 0.9rem !important;
         white-space: normal !important;
         text-align: center !important;
-        line-height: 1.2 !important;
+        margin-top: 5px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .season-item {
