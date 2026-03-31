@@ -620,21 +620,43 @@ a { color: inherit; }
         padding: 1rem;
     }
 
-    /* Los cuadros de 2 Temporadas / 32 Episodios */
     .hero-stats {
         display: flex !important;
-        flex-direction: column !important; /* Uno encima de otro */
-        gap: 1rem !important;
+        flex-wrap: wrap !important; /* ESTO es el secreto: permite que el 3er cuadro baje */
+        justify-content: center !important;
+        gap: 15px !important;
         width: 100% !important;
+        padding: 10px !important;
+    }
+
+    /* LOS CUADRITOS INDIVIDUALES */
+    .hero-stats > div, 
+    .stat-item { /* Usa el nombre de la clase que tengan tus cuadros */
+        flex: 1 1 140px !important; /* Intentan medir 140px, si no caben, bajan */
+        min-width: 130px !important;
+        max-width: 180px !important; /* Para que no se vean gigantes */
+        height: auto !important;
+        padding: 15px 10px !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
         align-items: center !important;
     }
 
-    .hero-stats > div {
-        width: 90% !important;
-        max-width: 280px !important;
-        margin: 0 auto !important;
+    /* AJUSTE DE TEXTO INTERNO PARA QUE NO SE CORTE */
+    .hero-stats div span, 
+    .hero-stats div p {
+        font-size: 0.85rem !important; /* Un poco más pequeño para que quepa todo */
+        white-space: normal !important;
+        line-height: 1.2 !important;
     }
 
+    .hero-stats div h3, 
+    .hero-stats div strong {
+        font-size: 1.5rem !important; /* El número grande */
+        margin-bottom: 5px !important;
+    }
     /* ================= INFO (País, Duración, Votos) ================= */
     .info-row {
         display: flex !important;
